@@ -11,7 +11,7 @@ we can enable ssh on boot, to allow supplementary configuration
 ## Boxes description
 
 * Leverages the Debian/Pixels image: http://downloads.raspberrypi.org/pixel_x86/images/
-* OS : Debian 7.2 amd64
+* OS : Debian 8 - Jessie 
 * 512MB Ram, 2 CPU
 
 
