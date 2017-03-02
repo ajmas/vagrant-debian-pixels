@@ -1,0 +1,44 @@
+{
+    "builders": [{
+        "disk_size": 10140,
+        "guest_os_type": "Debian",
+        "headless": false,
+        "http_directory": "http",
+        "iso_checksum": "29c24b21e5a46c6290d980681a7bd1fbc4974111e8ff2730ba8c1f2f53a22a59",
+        "iso_checksum_type": "sha256",
+        "iso_url": "http://downloads.raspberrypi.org/pixel_x86/images/pixel_x86-2016-12-13/2016-12-13-pixel-x86-jessie.iso",
+        "shutdown_command": "echo 'halt -p' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
+        "ssh_password": "raspberry",
+        "ssh_port": 22,
+        "ssh_username": "pi",
+        "ssh_wait_timeout": "10000s",
+        "type": "virtualbox-iso",
+        "vboxmanage": [
+            [
+                "modifyvm",
+                "{{.Name}}",
+                "--memory",
+                "512"
+            ],
+            [
+                "modifyvm",
+                "{{.Name}}",
+                "--cpus",
+                "2"
+            ]
+        ],
+        "boot_command": []
+    }],
+    "post-processors": [
+        "vagrant"
+    ],
+    "provisioners": [{
+        "type": "shell",
+        "execute_command": "echo 'vagrant'|sudo -S sh '{{.Path}}'",
+        "scripts": [
+            "scripts/base.sh",
+            "scripts/vagrant.sh",
+            "scripts/virtualbox.sh"
+        ]
+    }]
+}
